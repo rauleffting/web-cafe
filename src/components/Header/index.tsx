@@ -1,10 +1,27 @@
-import { HeaderContainer } from './styles'
+import { HeaderContainer, Logo, LocationAndCart } from './styles'
+import logo from '../../assets/web-cafe-logo.svg'
+import { MapPin, ShoppingCart } from 'phosphor-react'
 
 export function Header() {
   return (
     <HeaderContainer>
-      <h1>Header</h1>
-      <h2>Hello!</h2>
+      <Logo>
+        <img src={logo} alt="cup" />
+        <div>
+          <p>Web</p>
+          <span>Cafe</span>
+        </div>
+      </Logo>
+
+      <LocationAndCart>
+        <div className="location">
+          <MapPin size={22} />
+          <span>São Paulo, SP</span>
+        </div>
+        <div className="cart">
+          <ShoppingCart size={22} />
+        </div>
+      </LocationAndCart>
     </HeaderContainer>
   )
 }
