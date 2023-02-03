@@ -18,9 +18,10 @@ export function Header() {
           <MapPin size={22} />
           <span>São Paulo, SP</span>
         </div>
-        <div className="cart">
+        <button className="cart">
           <ShoppingCart size={22} />
-        </div>
+          <span>1</span>
+        </button>
       </LocationAndCart>
     </HeaderContainer>
   )
