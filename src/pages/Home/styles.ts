@@ -29,13 +29,17 @@ export const HomeContainer = styled.main`
     margin-bottom: 4.125rem;
   }
 
-  .content-wrapper {
+  .left-content-wrapper {
+    animation: leftright 1s;
+  }
+
+  .left-small-content-wrapper {
     display: flex;
     flex-direction: row;
     gap: 2.5rem;
   }
 
-  .content-wrapper2 {
+  .phrases-wrapper {
     display: flex;
     flex-direction: row;
     gap: 0.75rem;
@@ -51,5 +55,33 @@ export const HomeContainer = styled.main`
     line-height: 130%;
 
     color: ${(props) => props.theme['gray-700']};
+  }
+
+  .right-content-wrapper {
+    animation: rightleft 1s;
+  }
+
+  @keyframes leftright {
+    0% {
+      opacity: 0;
+      transform: translateX(-60px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes rightleft {
+    0% {
+      opacity: 0;
+      transform: translateX(60px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 `
