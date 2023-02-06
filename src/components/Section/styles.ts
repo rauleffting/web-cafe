@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding-top: 2rem;
   animation: downtop 1s;
 
@@ -31,8 +30,10 @@ export const SectionContainer = styled.section`
 `
 
 export const List = styled.div`
-  display: flex;
-  gap: 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  row-gap: 2.5rem;
 `
 
 export const Card = styled.div`
@@ -51,19 +52,22 @@ export const Card = styled.div`
     top: -20px;
   }
 
-  > span {
+  .types-wrapper {
     margin: 7rem 0 1rem;
-    border-radius: 100px;
-    padding: 0.25rem 0.5rem;
 
-    background-color: ${(props) => props.theme['yellow-300']};
-    color: ${(props) => props.theme['yellow-700']};
+    > span {
+      border-radius: 100px;
+      padding: 0.25rem 0.5rem;
 
-    font-style: normal;
-    font-weight: 700;
-    font-size: 0.625rem;
-    line-height: 130%;
-    text-transform: uppercase;
+      background-color: ${(props) => props.theme['yellow-300']};
+      color: ${(props) => props.theme['yellow-700']};
+
+      font-style: normal;
+      font-weight: 700;
+      font-size: 0.625rem;
+      line-height: 130%;
+      text-transform: uppercase;
+    }
   }
 
   > h3 {
@@ -127,8 +131,9 @@ export const CardFooter = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 2.375rem;
     width: 4.5rem;
-    padding: 0.5rem;
+    padding: 0 0.5rem;
     border-radius: 6px;
     background-color: ${(props) => props.theme['gray-400']};
 
@@ -138,17 +143,24 @@ export const CardFooter = styled.div`
       background: none;
       color: ${(props) => props.theme['purple-500']};
     }
+
+    > button:hover {
+      background: none;
+      color: ${(props) => props.theme['purple-700']};
+    }
   }
 
   .cart-button {
     background-color: ${(props) => props.theme['purple-700']};
     color: ${(props) => props.theme.white};
 
+    height: 2.375rem;
     padding: 0.5rem;
     border-radius: 6px;
   }
 
   button:hover {
     cursor: pointer;
+    background-color: ${(props) => props.theme['purple-500']};
   }
 `

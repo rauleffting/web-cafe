@@ -72,6 +72,7 @@ export const LocationAndCart = styled.div`
     padding: 0.5rem;
     border-radius: 6px;
     background-color: ${(props) => props.theme['yellow-300']};
+    position: relative;
 
     svg {
       color: ${(props) => props.theme['yellow-700']};
@@ -89,8 +90,8 @@ export const LocationAndCart = styled.div`
       background-color: ${(props) => props.theme['yellow-700']};
 
       position: absolute;
-      top: 25px;
-      right: 151.65px;
+      top: -10px;
+      right: -10px;
 
       font-style: normal;
       font-weight: 700;
