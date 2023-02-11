@@ -4,36 +4,37 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   margin-bottom: 2rem;
-`
 
-export const Logo = styled.div`
-  display: flex;
-  height: 2.5rem;
-  gap: 0.25rem;
-  cursor: pointer;
-
-  img {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-
-  > div {
+  .logo {
     display: flex;
-    flex-direction: column;
-    align-items: Left;
-    justify-content: center;
-  }
+    height: 2.5rem;
+    gap: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
 
-  p {
-    color: ${(props) => props.theme['gray-900']};
-    font-weight: bold;
-    font-size: 1.375rem;
-  }
+    img {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
 
-  span {
-    color: ${(props) => props.theme['gray-800']};
-    font-size: 1.375rem;
-    line-height: 50%;
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: Left;
+      justify-content: center;
+    }
+
+    p {
+      color: ${(props) => props.theme['gray-900']};
+      font-weight: bold;
+      font-size: 1.375rem;
+    }
+
+    span {
+      color: ${(props) => props.theme['gray-800']};
+      font-size: 1.375rem;
+      line-height: 50%;
+    }
   }
 `
 
