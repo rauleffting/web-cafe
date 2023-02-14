@@ -17,6 +17,10 @@ export const CheckoutForm = styled.form`
 
 export const CompleteYourOrderContainer = styled.div`
   max-width: 40rem;
+
+  h3 {
+    margin-bottom: 1rem;
+  }
 `
 
 export const DeliveryContainer = styled.div`
@@ -25,6 +29,7 @@ export const DeliveryContainer = styled.div`
   padding: 2.5rem;
   border-radius: 6px;
   margin-bottom: 0.75rem;
+  width: 40rem;
 
   background-color: ${(props) => props.theme['gray-200']};
 
@@ -53,8 +58,47 @@ export const DeliveryContainer = styled.div`
       color: ${(props) => props.theme['gray-700']};
     }
   }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      background-color: ${(props) => props.theme['gray-300']};
+      border: 1px solid ${(props) => props.theme['gray-400']};
+      border-radius: 4px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      width: 12.5rem;
+    }
+
+    .street-input {
+      width: 100%;
+    }
+
+    .number-complement-input-wrapper {
+      display: flex;
+      gap: 0.75rem;
+
+      .complement-input {
+        width: 100%;
+      }
+    }
+
+    .neighborhood-city-state-input-wrapper {
+      display: flex;
+      gap: 0.75rem;
+
+      .city-input {
+        width: 100%;
+      }
+
+      .state-input {
+        max-width: 3.75rem;
+      }
+    }
+  }
 `
-export const BaseInput = styled.input``
 
 export const SelectedCoffeesContainer = styled.div`
   max-width: 28rem;

@@ -25,12 +25,22 @@ export function Checkout() {
 
           <div className="input-wrapper">
             <input type="text" placeholder="Zip code" />
-            <input type="text" placeholder="Street" />
-            <input type="text" placeholder="Number" />
-            <input type="text" placeholder="Complement" />
-            <input type="text" placeholder="Neighborhood" />
-            <input type="text" placeholder="City" />
-            <input type="text" placeholder="State" />
+            <input type="text" placeholder="Street" className="street-input" />
+
+            <div className="number-complement-input-wrapper">
+              <input type="text" placeholder="Number" />
+              <input
+                type="text"
+                placeholder="Complement"
+                className="complement-input"
+              />
+            </div>
+
+            <div className="neighborhood-city-state-input-wrapper">
+              <input type="text" placeholder="Neighborhood" />
+              <input type="text" placeholder="City" className="city-input" />
+              <input type="text" placeholder="FS" className="state-input" />
+            </div>
           </div>
         </DeliveryContainer>
       </CompleteYourOrderContainer>
