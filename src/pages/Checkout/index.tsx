@@ -5,7 +5,9 @@ import {
   SelectedCoffeesContainer,
 } from './styles'
 
-import { MapPinLine } from 'phosphor-react'
+import { CreditCard, MapPinLine, Money } from 'phosphor-react'
+import dolarIcon from './assets/dolarIcon.svg'
+import { CoffeesList } from './components/CoffeesList'
 
 export function Checkout() {
   return (
@@ -43,10 +45,34 @@ export function Checkout() {
             </div>
           </div>
         </DeliveryContainer>
+        <DeliveryContainer>
+          <div className="delivery-container-header-wrapper">
+            <img src={dolarIcon} width="22" height="22" alt="" />
+            <div>
+              <p>Payment</p>
+              <span>
+                Payment is made on delivery. Choose the way you want to pay
+              </span>
+            </div>
+          </div>
+          <div className="payment-method-wrapper">
+            <div>
+              <CreditCard size={16} />
+              <span>Credit Card</span>
+            </div>
+            <div>
+              <Money size={16} />
+              <span>Cash</span>
+            </div>
+          </div>
+        </DeliveryContainer>
       </CompleteYourOrderContainer>
 
       <SelectedCoffeesContainer>
         <h3>Selected coffees</h3>
+        <div className="content-wrapper">
+          <CoffeesList />
+        </div>
       </SelectedCoffeesContainer>
     </CheckoutForm>
   )

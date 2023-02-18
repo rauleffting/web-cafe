@@ -1,9 +1,9 @@
 import { SectionContainer, List, Card, CardFooter } from './styles'
-import americanEspresso from './assets/american-espresso.svg'
-import arabicEspresso from './assets/arabic.svg'
-import traditionalEspresso from './assets/traditional-espresso.svg'
-import capuccino from './assets/capuccino.svg'
-import coffeWithMilk from './assets/coffee-with-milk.svg'
+import americanEspresso from '../../../../assets/american-espresso.svg'
+import arabicEspresso from '../../../../assets/arabic.svg'
+import traditionalEspresso from '../../../../assets/traditional-espresso.svg'
+import capuccino from '../../../../assets/capuccino.svg'
+import coffeWithMilk from '../../../../assets/coffee-with-milk.svg'
 
 import { Minus, Plus, ShoppingCart } from 'phosphor-react'
 

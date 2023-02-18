@@ -1,6 +1,6 @@
 import { HomeContainer } from './styles'
-import { Section } from '../../components/Section'
-import { Banner } from '../../components/Banner'
+import { Section } from './components/Section'
+import { Banner } from './components/Banner'
 
 export function Home() {
   return (

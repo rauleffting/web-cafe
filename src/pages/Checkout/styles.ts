@@ -98,8 +98,48 @@ export const DeliveryContainer = styled.div`
       }
     }
   }
+
+  .payment-method-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    > div {
+      display: flex;
+      align-items: center;
+      min-width: 11rem;
+      gap: 0.75rem;
+      padding: 1rem;
+      border-radius: 6px;
+
+      background-color: ${(props) => props.theme['gray-400']};
+
+      svg {
+        color: ${(props) => props.theme['purple-500']};
+      }
+
+      span {
+        text-transform: uppercase;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 0.75rem;
+        line-height: 160%;
+
+        color: ${(props) => props.theme['gray-700']};
+      }
+    }
+  }
 `
 
 export const SelectedCoffeesContainer = styled.div`
   max-width: 28rem;
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem;
+    border-radius: 6px 44px;
+
+    background-color: ${(props) => props.theme['gray-200']};
+  }
 `
