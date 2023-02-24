@@ -1,13 +1,16 @@
 import {
   CheckoutForm,
   CompleteYourOrderContainer,
+  ConfirmButton,
   DeliveryContainer,
+  InfoLine,
   SelectedCoffeesContainer,
+  Total,
 } from './styles'
 
 import { CreditCard, MapPinLine, Money } from 'phosphor-react'
 import dolarIcon from './assets/dolarIcon.svg'
-import { CoffeesList } from './components/CoffeesList'
+import { CoffeeItem } from './components/Coffees'
 
 export function Checkout() {
   return (
@@ -70,8 +73,28 @@ export function Checkout() {
 
       <SelectedCoffeesContainer>
         <h3>Selected coffees</h3>
-        <div className="content-wrapper">
-          <CoffeesList />
+        <div className="order-container">
+          <CoffeeItem />
+          <CoffeeItem />
+
+          <div className="info-lines">
+            <InfoLine>
+              <p>Total items</p>
+              <span>$ 19.80</span>
+            </InfoLine>
+            <InfoLine>
+              <p>Delivery fee</p>
+              <span>$ 3.00</span>
+            </InfoLine>
+            <Total>
+              <p>Total</p>
+              <span>$ 22.80</span>
+            </Total>
+          </div>
+
+          <ConfirmButton>
+            <span>Confirm order</span>
+          </ConfirmButton>
         </div>
       </SelectedCoffeesContainer>
     </CheckoutForm>

@@ -4,8 +4,8 @@ import arabicEspresso from '../../../../assets/arabic.svg'
 import traditionalEspresso from '../../../../assets/traditional-espresso.svg'
 import capuccino from '../../../../assets/capuccino.svg'
 import coffeWithMilk from '../../../../assets/coffee-with-milk.svg'
-
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { QuantityControls } from '../../../../components/QuantityControls'
+import { ShoppingCart } from 'phosphor-react'
 
 interface Items {
   image: string
@@ -77,15 +77,7 @@ export function Section() {
                   <strong>{item.price}</strong>
                 </div>
                 <div className="buttons-wrapper">
-                  <div className="counter">
-                    <button>
-                      <Minus size={14} />
-                    </button>
-                    <span>1</span>
-                    <button>
-                      <Plus size={14} />
-                    </button>
-                  </div>
+                  <QuantityControls />
                   <button className="cart-button">
                     <ShoppingCart size={22} />
                   </button>
