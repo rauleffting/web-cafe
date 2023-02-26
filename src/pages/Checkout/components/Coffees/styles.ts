@@ -56,6 +56,11 @@ export const CoffeeItemContainer = styled.div`
     }
   }
 
+  .button-remove:hover {
+    background-color: ${(props) => props.theme['gray-500']};
+    cursor: pointer;
+  }
+
   span {
     font-style: normal;
     font-weight: 700;

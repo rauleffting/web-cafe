@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import {
   CheckoutForm,
   CompleteYourOrderContainer,
@@ -59,14 +61,14 @@ export function Checkout() {
             </div>
           </div>
           <div className="payment-method-wrapper">
-            <div>
+            <button className="selected-button">
               <CreditCard size={16} />
               <span>Credit Card</span>
-            </div>
-            <div>
+            </button>
+            <button>
               <Money size={16} />
               <span>Cash</span>
-            </div>
+            </button>
           </div>
         </DeliveryContainer>
       </CompleteYourOrderContainer>

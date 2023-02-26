@@ -62,11 +62,23 @@ export const DeliveryContainer = styled.div`
 
     input {
       background-color: ${(props) => props.theme['gray-300']};
+      color: ${(props) => props.theme['gray-700']};
       border: 1px solid ${(props) => props.theme['gray-400']};
       border-radius: 4px;
       padding: 0.75rem;
       margin-bottom: 1rem;
       width: 12.5rem;
+    }
+
+    input::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: ${(props) => props.theme['gray-600']};
+      opacity: 1; /* Firefox */
+    }
+
+    input[type='text']:focus {
+      border: 1px solid ${(props) => props.theme['yellow-700']};
+      outline: none;
     }
 
     .street-input {
@@ -101,7 +113,7 @@ export const DeliveryContainer = styled.div`
     align-items: center;
     gap: 0.75rem;
 
-    > div {
+    > button {
       display: flex;
       align-items: center;
       min-width: 11rem;
@@ -125,6 +137,16 @@ export const DeliveryContainer = styled.div`
         color: ${(props) => props.theme['gray-700']};
       }
     }
+
+    > button:hover {
+      cursor: pointer;
+      background-color: ${(props) => props.theme['gray-500']};
+    }
+
+    .selected-button {
+      background-color: ${(props) => props.theme['purple-300']};
+      border: 1px solid ${(props) => props.theme['purple-500']};
+    }
   }
 `
 
@@ -147,6 +169,7 @@ export const SelectedCoffeesContainer = styled.div`
     gap: 0.75rem;
   }
 `
+
 export const InfoLine = styled.div`
   display: flex;
   justify-content: space-between;
@@ -199,5 +222,10 @@ export const ConfirmButton = styled.button`
 
     text-transform: uppercase;
     color: ${(props) => props.theme.white};
+  }
+
+  :hover {
+    cursor: pointer;
+    background-color: ${(props) => props.theme['yellow-700']};
   }
 `

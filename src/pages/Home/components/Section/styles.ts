@@ -136,7 +136,7 @@ export const CardFooter = styled.div`
     border-radius: 6px;
   }
 
-  button:hover {
+  .cart-button:hover {
     cursor: pointer;
     background-color: ${(props) => props.theme['purple-500']};
   }
