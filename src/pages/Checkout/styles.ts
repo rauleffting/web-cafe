@@ -10,9 +10,13 @@ export const CheckoutForm = styled.form`
     font-family: 'Baloo 2';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.125rem;
     line-height: 130%;
     margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: none;
   }
 `
 

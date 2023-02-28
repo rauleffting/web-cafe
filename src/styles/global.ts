@@ -20,4 +20,8 @@ export const GlobalStyle = createGlobalStyle`
   button {
     border: 0;
   }
+
+  a {
+    text-decoration: none;
+  }
 `

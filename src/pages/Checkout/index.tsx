@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import {
   CheckoutForm,
@@ -10,11 +10,17 @@ import {
   Total,
 } from './styles'
 
-import { CreditCard, MapPinLine, Money } from 'phosphor-react'
 import dolarIcon from './assets/dolarIcon.svg'
+import { CreditCard, MapPinLine, Money } from 'phosphor-react'
 import { CoffeeItem } from './components/Coffees'
 
 export function Checkout() {
+  const navigate = useNavigate()
+
+  function handleConfirmOrder() {
+    navigate('/confirmation')
+  }
+
   return (
     <CheckoutForm>
       <CompleteYourOrderContainer>
@@ -94,7 +100,7 @@ export function Checkout() {
             </Total>
           </div>
 
-          <ConfirmButton>
+          <ConfirmButton onClick={handleConfirmOrder}>
             <span>Confirm order</span>
           </ConfirmButton>
         </div>
