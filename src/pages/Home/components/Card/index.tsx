@@ -12,6 +12,7 @@ interface CardProps {
 
 export function Card({ item, handleAdd }: CardProps) {
   const [quantity, setQuantity] = useState<number>(1)
+
   function handleSum() {
     setQuantity(quantity + 1)
   }
@@ -20,6 +21,21 @@ export function Card({ item, handleAdd }: CardProps) {
     const newQuantity = quantity - 1
     newQuantity <= 1 ? setQuantity(1) : setQuantity(newQuantity)
   }
+
+  function handleAddToCart() {
+    const newCartItem: CartItems = {
+      id: item.id,
+      name: item.name,
+      image: item.image,
+      description: item.description,
+      price: item.price,
+      types: item.types,
+      quantity,
+    }
+
+    handleAdd(newCartItem)
+  }
+
   return (
     <CardContainer key={item.name}>
       <img src={item.image} alt="coffee image" />
@@ -46,7 +62,7 @@ export function Card({ item, handleAdd }: CardProps) {
               <Plus size={14} />
             </button>
           </div>
-          <button className="cart-button" onClick={() => {}}>
+          <button className="cart-button" onClick={handleAddToCart}>
             <ShoppingCart size={22} />
           </button>
         </div>

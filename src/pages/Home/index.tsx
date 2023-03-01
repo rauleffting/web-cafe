@@ -67,19 +67,29 @@ export function Home() {
       description: 'Traditional coffee made with hot water and ground beans',
     },
   ]
-  const [cartItems, setCartItems] = useState<Items[]>([])
+  const [cartItems, setCartItems] = useState<CartItems[]>([])
 
-  function handleAdd(item: CartItems) {
-    const newItem = {
-      ...item,
+  function handleAdd(newCartItem: CartItems) {
+    const itemIndex = cartItems.findIndex(
+      (item: CartItems) => item.id === newCartItem.id,
+    )
+    if (itemIndex !== -1) {
+      const updatedCartItems = [...cartItems]
+      updatedCartItems[itemIndex].quantity += newCartItem.quantity
+      setCartItems(updatedCartItems)
+    } else {
+      setCartItems([...cartItems, newCartItem])
     }
+  }
 
-    setCartItems([...cartItems, newItem])
+  function handleDebug() {
+    console.log(cartItems)
   }
 
   return (
     <HomeContainer>
       <Banner />
+      <button onClick={handleDebug}>debug</button>
       <Section>
         {items.map((item) => {
           return <Card key={item.id} item={item} handleAdd={handleAdd} />
