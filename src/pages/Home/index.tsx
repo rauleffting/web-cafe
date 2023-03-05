@@ -6,16 +6,11 @@ import { Card } from './components/Card'
 import { CartContext } from '../../contexts/CartContext'
 
 export function Home() {
-  const { items, cartItems } = useContext(CartContext)
-
-  function handleDebug() {
-    console.log(cartItems)
-  }
+  const { items } = useContext(CartContext)
 
   return (
     <HomeContainer>
       <Banner />
-      <button onClick={handleDebug}>debug</button>
       <Section>
         {items.map((item) => {
           return <Card key={item.id} item={item} />

@@ -3,14 +3,25 @@ import { ShoppingCart, Plus, Minus } from 'phosphor-react'
 
 /** Interfaces and Context */
 import { Items, CartItems, CartContext } from '../../../../contexts/CartContext'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 
 interface CardProps {
   item: Items
 }
 
 export function Card({ item }: CardProps) {
-  const { quantity, handleSum, handleSub, handleAdd } = useContext(CartContext)
+  const { handleAdd } = useContext(CartContext)
+
+  const [quantity, setQuantity] = useState(1)
+
+  function handleSum() {
+    setQuantity(quantity + 1)
+  }
+
+  function handleSub() {
+    const newQuantity = quantity - 1
+    newQuantity <= 1 ? setQuantity(1) : setQuantity(newQuantity)
+  }
 
   function handleAddToCart() {
     const newCartItem: CartItems = {

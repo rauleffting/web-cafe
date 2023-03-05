@@ -29,9 +29,7 @@ interface CartContextType {
   items: Items[]
   cartItems: CartItems[]
   handleAdd: (newCartItem: CartItems) => void
-  quantity: number
-  handleSum: () => void
-  handleSub: () => void
+  numberOfItems: number
 }
 
 interface CartContextProps {
@@ -41,7 +39,6 @@ interface CartContextProps {
 export const CartContext = createContext({} as CartContextType)
 
 export function CartContextProvider({ children }: CartContextProps) {
-  // Section
   const items = [
     {
       id: 1,
@@ -86,31 +83,45 @@ export function CartContextProvider({ children }: CartContextProps) {
     },
   ]
   const [cartItems, setCartItems] = useState<CartItems[]>([])
-
-  // Card
-  const [quantity, setQuantity] = useState(1)
-
-  function handleSum() {
-    setQuantity(quantity + 1)
-  }
-
-  function handleSub() {
-    const newQuantity = quantity - 1
-    newQuantity <= 1 ? setQuantity(1) : setQuantity(newQuantity)
-  }
+  const [ numberOfItems, setNumberOfItems ] = useState(0)
 
   function handleAdd(newCartItem: CartItems) {
-    const itemIndex = cartItems.findIndex(
-      (item: CartItems) => item.id === newCartItem.id,
-    )
-    if (itemIndex !== -1) {
-      const updatedCartItems = [...cartItems]
-      updatedCartItems[itemIndex].quantity += newCartItem.quantity
-      setCartItems(updatedCartItems)
+    const existingItem = cartItems.find(item => item.id === newCartItem.id);
+    if (existingItem) {
+      setCartItems(
+        cartItems.map(item =>
+          item.id === newCartItem.id
+            ? { ...item, quantity: item.quantity + newCartItem.quantity }
+            : item
+        )
+      );
     } else {
-      setCartItems([...cartItems, newCartItem])
+      setCartItems([...cartItems, newCartItem]);
     }
   }
+
+  useEffect(() => {
+    const storedStateAsJSON = localStorage.getItem('@webcafe-1.0.0');
+    if (storedStateAsJSON) {
+      try {
+        setCartItems([...JSON.parse(storedStateAsJSON)]);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    console.log(storedStateAsJSON)
+  }, []);
+
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cartItems)
+    localStorage.setItem(
+      '@webcafe-1.0.0',
+      stateJSON,
+    )
+
+    let counter = cartItems.reduce((total, item) => total += item.quantity, 0)
+    setNumberOfItems(counter)
+  }, [cartItems])
 
   return (
     <CartContext.Provider
@@ -118,9 +129,7 @@ export function CartContextProvider({ children }: CartContextProps) {
         items,
         cartItems,
         handleAdd,
-        quantity,
-        handleSum,
-        handleSub,
+        numberOfItems
       }}
     >
       {children}
