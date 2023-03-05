@@ -82,45 +82,40 @@ export function CartContextProvider({ children }: CartContextProps) {
       description: 'Traditional coffee made with hot water and ground beans',
     },
   ]
-  const [cartItems, setCartItems] = useState<CartItems[]>([])
-  const [ numberOfItems, setNumberOfItems ] = useState(0)
+  const [cartItems, setCartItems] = useState<CartItems[]>(() => {
+    const storedStateAsJSON = localStorage.getItem('@webcafe-1.0.0')
+    if (storedStateAsJSON) {
+      return JSON.parse(storedStateAsJSON)
+    }
+    return []
+  })
+  const [numberOfItems, setNumberOfItems] = useState(0)
 
   function handleAdd(newCartItem: CartItems) {
-    const existingItem = cartItems.find(item => item.id === newCartItem.id);
+    const existingItem = cartItems.find((item) => item.id === newCartItem.id)
     if (existingItem) {
       setCartItems(
-        cartItems.map(item =>
+        cartItems.map((item) =>
           item.id === newCartItem.id
             ? { ...item, quantity: item.quantity + newCartItem.quantity }
-            : item
-        )
-      );
+            : item,
+        ),
+      )
     } else {
-      setCartItems([...cartItems, newCartItem]);
+      setCartItems([...cartItems, newCartItem])
     }
   }
 
   useEffect(() => {
-    const storedStateAsJSON = localStorage.getItem('@webcafe-1.0.0');
-    if (storedStateAsJSON) {
-      try {
-        setCartItems([...JSON.parse(storedStateAsJSON)]);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    console.log(storedStateAsJSON)
-  }, []);
-
-  useEffect(() => {
     const stateJSON = JSON.stringify(cartItems)
-    localStorage.setItem(
-      '@webcafe-1.0.0',
-      stateJSON,
-    )
+    localStorage.setItem('@webcafe-1.0.0', stateJSON)
 
-    let counter = cartItems.reduce((total, item) => total += item.quantity, 0)
+    const counter = cartItems.reduce(
+      (total, item) => (total += item.quantity),
+      0,
+    )
     setNumberOfItems(counter)
+    console.log(cartItems)
   }, [cartItems])
 
   return (
@@ -129,7 +124,7 @@ export function CartContextProvider({ children }: CartContextProps) {
         items,
         cartItems,
         handleAdd,
-        numberOfItems
+        numberOfItems,
       }}
     >
       {children}

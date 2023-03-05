@@ -26,9 +26,7 @@ export function Header() {
         <NavLink to="/checkout" title="checkout">
           <button className="cart">
             <ShoppingCart size={22} />
-            {
-              numberOfItems>0 && <span>{numberOfItems}</span>
-            }
+            {numberOfItems > 0 && <span>{numberOfItems}</span>}
           </button>
         </NavLink>
       </LocationAndCart>
