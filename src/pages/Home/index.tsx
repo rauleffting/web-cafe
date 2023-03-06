@@ -13,7 +13,7 @@ export function Home() {
       <Banner />
       <Section>
         {items.map((item) => {
-          return <Card key={item.id} item={item} />
+          return <Card key={item.name} item={item} />
         })}
       </Section>
     </HomeContainer>

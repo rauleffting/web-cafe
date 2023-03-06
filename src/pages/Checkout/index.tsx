@@ -12,9 +12,18 @@ import {
 
 import dolarIcon from './assets/dolarIcon.svg'
 import { CreditCard, MapPinLine, Money } from 'phosphor-react'
-import { CoffeeItem } from './components/Coffees'
+import { CoffeeItem } from './components/CoffeeItem'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Checkout() {
+  const { cartItems } = useContext(CartContext)
+
+  const total: number = cartItems.reduce(
+    (total, item) => (total += item.quantity * Number(item.price)),
+    0,
+  )
+
   const navigate = useNavigate()
 
   function handleConfirmOrder() {
@@ -82,13 +91,14 @@ export function Checkout() {
       <SelectedCoffeesContainer>
         <h3>Selected coffees</h3>
         <div className="order-container">
-          <CoffeeItem />
-          <CoffeeItem />
+          {cartItems.map((item) => (
+            <CoffeeItem key={item.name} item={item} />
+          ))}
 
           <div className="info-lines">
             <InfoLine>
               <p>Total items</p>
-              <span>$ 19.80</span>
+              <span>$ {total.toFixed(2)}</span>
             </InfoLine>
             <InfoLine>
               <p>Delivery fee</p>
@@ -96,7 +106,7 @@ export function Checkout() {
             </InfoLine>
             <Total>
               <p>Total</p>
-              <span>$ 22.80</span>
+              <span>$ {(total + 3).toFixed(2)}</span>
             </Total>
           </div>
 

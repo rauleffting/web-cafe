@@ -2,11 +2,11 @@ import { HeaderContainer, LocationAndCart } from './styles'
 import logo from '../../assets/web-cafe-logo.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
-  const { numberOfItems } = useContext(CartContext)
+  const { cartItems, numberOfItems } = useContext(CartContext)
 
   return (
     <HeaderContainer>
@@ -23,7 +23,7 @@ export function Header() {
           <MapPin size={22} />
           <span>São Paulo, SP</span>
         </div>
-        <NavLink to="/checkout" title="checkout">
+        <NavLink to={cartItems ? '/checkout' : ''} title="checkout">
           <button className="cart">
             <ShoppingCart size={22} />
             {numberOfItems > 0 && <span>{numberOfItems}</span>}

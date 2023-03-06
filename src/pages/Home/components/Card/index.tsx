@@ -10,7 +10,7 @@ interface CardProps {
 }
 
 export function Card({ item }: CardProps) {
-  const { handleAdd } = useContext(CartContext)
+  const { handleAddToCart } = useContext(CartContext)
 
   const [quantity, setQuantity] = useState(1)
 
@@ -23,9 +23,8 @@ export function Card({ item }: CardProps) {
     newQuantity <= 1 ? setQuantity(1) : setQuantity(newQuantity)
   }
 
-  function handleAddToCart() {
+  function handleAdd() {
     const newCartItem: CartItems = {
-      id: item.id,
       name: item.name,
       image: item.image,
       description: item.description,
@@ -34,7 +33,7 @@ export function Card({ item }: CardProps) {
       quantity,
     }
 
-    handleAdd(newCartItem)
+    handleAddToCart(newCartItem)
   }
 
   return (
@@ -63,7 +62,7 @@ export function Card({ item }: CardProps) {
               <Plus size={14} />
             </button>
           </div>
-          <button className="cart-button" onClick={handleAddToCart}>
+          <button className="cart-button" onClick={handleAdd}>
             <ShoppingCart size={22} />
           </button>
         </div>
