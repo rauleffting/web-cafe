@@ -20,7 +20,11 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
 
         <div className="buttons-wrapper">
           <QuantityControlsContainer>
-            <button onClick={() => handleSub(item.name)}>
+            <button
+              onClick={
+                item.quantity > 1 ? () => handleSub(item.name) : undefined
+              }
+            >
               <Minus size={14} />
             </button>
             <span>{item.quantity}</span>

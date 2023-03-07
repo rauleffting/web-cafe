@@ -10,14 +10,34 @@ import {
   Total,
 } from './styles'
 
+import { FormProvider, useForm } from 'react-hook-form'
+/** to integrate hookform with zod */
+import { zodResolver } from '@hookform/resolvers/zod'
+/** to validate forms */
+import zod from 'zod'
+
 import dolarIcon from './assets/dolarIcon.svg'
 import { CreditCard, MapPinLine, Money } from 'phosphor-react'
 import { CoffeeItem } from './components/CoffeeItem'
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 
+const newOrderFormValidationSchema = zod.object({
+  zipCode: zod.string().min(1, 'Inform a zip code'),
+  street: zod.string().min(1, 'Inform a street'),
+  number: zod.string().min(1, 'Inform a number'),
+  complement: zod.string().min(1, 'Inform a complement'),
+  neighborhood: zod.string().min(1, 'Inform a neighborhood'),
+  city: zod.string().min(1, 'Inform a city'),
+  st: zod.string().min(1, 'Inform a state'),
+  payment: zod.string(),
+  total: zod.number(),
+})
+
+type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
+
 export function Checkout() {
-  const { cartItems } = useContext(CartContext)
+  const { cartItems, createNewOrder } = useContext(CartContext)
 
   const total: number = cartItems.reduce(
     (total, item) => (total += item.quantity * Number(item.price)),
@@ -30,8 +50,30 @@ export function Checkout() {
     navigate('/confirmation')
   }
 
+  const newOrderForm = useForm<NewOrderFormData>({
+    resolver: zodResolver(newOrderFormValidationSchema),
+    defaultValues: {
+      zipCode: '',
+      street: '',
+      number: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      st: '',
+      payment: 'credit card',
+      total: total + 3,
+    },
+  })
+
+  const { handleSubmit, reset } = newOrderForm
+
+  function handleOrderNewCycle(data: NewOrderFormData) {
+    createNewOrder(data)
+    reset() /** to reset the form */
+  }
+
   return (
-    <CheckoutForm>
+    <CheckoutForm onSubmit={handleSubmit(handleOrderNewCycle)} action="">
       <CompleteYourOrderContainer>
         <h3>Complete your order</h3>
         <DeliveryContainer>
@@ -61,7 +103,7 @@ export function Checkout() {
             <div className="neighborhood-city-state-input-wrapper">
               <input type="text" placeholder="Neighborhood" />
               <input type="text" placeholder="City" className="city-input" />
-              <input type="text" placeholder="FS" className="state-input" />
+              <input type="text" placeholder="ST" className="state-input" />
             </div>
           </div>
         </DeliveryContainer>

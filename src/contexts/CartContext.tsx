@@ -1,10 +1,9 @@
 import {
-  useState,
   createContext,
   ReactNode,
   useEffect,
   useReducer,
-  useRef,
+  useState,
 } from 'react'
 
 import americanEspresso from '../assets/american-espresso.svg'
@@ -32,14 +31,28 @@ export interface CartItems extends Items {
   quantity: number
 }
 
+interface Order {
+  zipCode: string
+  street: string
+  number: string
+  complement: string
+  neighborhood: string
+  city: string
+  st: string
+  payment: string
+  total: number
+}
+
 interface CartContextType {
   items: Items[]
   cartItems: CartItems[]
-  handleAddToCart: (newCartItem: CartItems) => void
   numberOfItems: number
+  order: Order[]
+  handleAddToCart: (newCartItem: CartItems) => void
   handleSum: (name: string) => void
   handleSub: (name: string) => void
   handleRemove: (name: string) => void
+  createNewOrder: (data: Order[]) => void
 }
 
 interface CartContextProps {
@@ -96,13 +109,16 @@ export function CartContextProvider({ children }: CartContextProps) {
     }
   })
 
-  const [numberOfItems, setNumberOfItems] = useState(0)
+  const numberOfItems = cartItems.reduce(
+    (total, item) => (total += item.quantity),
+    0,
+  )
+
+  const [order, setOrder] = useState<Order[]>([])
 
   function handleAddToCart(newCartItem: CartItems) {
     dispatch(addToCartAction(newCartItem))
   }
-
-  console.log('renderizado')
 
   function handleSum(name: string) {
     dispatch(updateQuantity(name, 1))
@@ -116,21 +132,10 @@ export function CartContextProvider({ children }: CartContextProps) {
     dispatch(removeItem(name))
   }
 
-  const prevCartItems = useRef(cartItems)
+  function createNewOrder(data: Order[]) {}
 
   useEffect(() => {
-    if (cartItems !== prevCartItems.current) {
-      const stateJSON = JSON.stringify(cartItems)
-      localStorage.setItem('@webcafe-1.0.0', stateJSON)
-
-      const counter = cartItems.reduce(
-        (total, item) => (total += item.quantity),
-        0,
-      )
-      setNumberOfItems(counter)
-
-      prevCartItems.current = cartItems
-    }
+    localStorage.setItem('@webcafe-1.0.0', JSON.stringify(cartItems))
   }, [cartItems])
 
   return (
@@ -138,11 +143,12 @@ export function CartContextProvider({ children }: CartContextProps) {
       value={{
         items,
         cartItems,
-        handleAddToCart,
         numberOfItems,
+        handleAddToCart,
         handleSum,
         handleSub,
         handleRemove,
+        createNewOrder
       }}
     >
       {children}
