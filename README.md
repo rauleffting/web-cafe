@@ -1,4 +1,4 @@
-Web Cafe
+:coffee: Web Cafe
 ========
 
 Web Cafe is a sample website for a cafe or restaurant that provides an online platform for customers to view menu items and place orders. The website is built using HTML, CSS, and TypeScript.
