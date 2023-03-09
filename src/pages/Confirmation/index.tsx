@@ -8,16 +8,11 @@ import clock from './assets/clock.svg'
 import dolar from './assets/dolar.svg'
 import location from './assets/location.svg'
 import confirmationBanner from './assets/confirmation-banner.svg'
+import { useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext'
 
 export function Confirmation() {
-  const clientInfo = {
-    street: 'Avenida Paulista',
-    number: '223',
-    city: 'São Paulo',
-    fs: 'SP',
-    neighborhood: 'Bela Vista',
-    paymentMethod: 'Credit Card',
-  }
+  const { order } = useContext(CartContext)
 
   return (
     <ConfirmationContainer>
@@ -33,11 +28,11 @@ export function Confirmation() {
               <p>
                 Delivery at{' '}
                 <strong>
-                  {clientInfo.street}, {clientInfo.number}
+                  {order.street}, {order.number}
                 </strong>
               </p>
               <p>
-                {clientInfo.neighborhood} - {clientInfo.city}, {clientInfo.fs}
+                {order.neighborhood} - {order.city}, {order.st}
               </p>
             </div>
           </Info>
@@ -55,7 +50,7 @@ export function Confirmation() {
             <div className="text-wrapper">
               <p>Payment method</p>
               <p>
-                <strong>{clientInfo.paymentMethod}</strong>
+                <strong>{order.paymentMethod}</strong>
               </p>
             </div>
           </Info>

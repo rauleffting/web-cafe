@@ -117,7 +117,7 @@ export const DeliveryContainer = styled.div`
     align-items: center;
     gap: 0.75rem;
 
-    > button {
+    > label {
       display: flex;
       align-items: center;
       min-width: 11rem;
@@ -126,6 +126,12 @@ export const DeliveryContainer = styled.div`
       border-radius: 6px;
 
       background-color: ${(props) => props.theme['gray-400']};
+
+      input[type='radio'] {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+      }
 
       svg {
         color: ${(props) => props.theme['purple-500']};
@@ -147,7 +153,7 @@ export const DeliveryContainer = styled.div`
       background-color: ${(props) => props.theme['gray-500']};
     }
 
-    .selected-button {
+    .selected-input {
       background-color: ${(props) => props.theme['purple-300']};
       border: 1px solid ${(props) => props.theme['purple-500']};
     }
@@ -231,5 +237,10 @@ export const ConfirmButton = styled.button`
   :hover {
     cursor: pointer;
     background-color: ${(props) => props.theme['yellow-700']};
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 `

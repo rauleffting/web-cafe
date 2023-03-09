@@ -31,7 +31,7 @@ export interface CartItems extends Items {
   quantity: number
 }
 
-interface Order {
+interface createOrderData {
   zipCode: string
   street: string
   number: string
@@ -39,20 +39,32 @@ interface Order {
   neighborhood: string
   city: string
   st: string
-  payment: string
+  paymentMethod: string
   total: number
+}
+
+const initialOrderState: createOrderData = {
+  zipCode: '',
+  street: '',
+  number: '',
+  complement: '',
+  neighborhood: '',
+  city: '',
+  st: '',
+  paymentMethod: '',
+  total: 0,
 }
 
 interface CartContextType {
   items: Items[]
   cartItems: CartItems[]
   numberOfItems: number
-  order: Order[]
+  order: createOrderData
   handleAddToCart: (newCartItem: CartItems) => void
   handleSum: (name: string) => void
   handleSub: (name: string) => void
   handleRemove: (name: string) => void
-  createNewOrder: (data: Order[]) => void
+  createNewOrder: (data: createOrderData) => void
 }
 
 interface CartContextProps {
@@ -114,7 +126,7 @@ export function CartContextProvider({ children }: CartContextProps) {
     0,
   )
 
-  const [order, setOrder] = useState<Order[]>([])
+  const [order, setOrder] = useState<createOrderData>(initialOrderState)
 
   function handleAddToCart(newCartItem: CartItems) {
     dispatch(addToCartAction(newCartItem))
@@ -132,7 +144,9 @@ export function CartContextProvider({ children }: CartContextProps) {
     dispatch(removeItem(name))
   }
 
-  function createNewOrder(data: Order[]) {}
+  function createNewOrder(data: createOrderData) {
+    setOrder({ ...data })
+  }
 
   useEffect(() => {
     localStorage.setItem('@webcafe-1.0.0', JSON.stringify(cartItems))
@@ -144,11 +158,12 @@ export function CartContextProvider({ children }: CartContextProps) {
         items,
         cartItems,
         numberOfItems,
+        order,
         handleAddToCart,
         handleSum,
         handleSub,
         handleRemove,
-        createNewOrder
+        createNewOrder,
       }}
     >
       {children}

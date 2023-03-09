@@ -10,7 +10,7 @@ import {
   Total,
 } from './styles'
 
-import { FormProvider, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 /** to integrate hookform with zod */
 import { zodResolver } from '@hookform/resolvers/zod'
 /** to validate forms */
@@ -19,24 +19,25 @@ import zod from 'zod'
 import dolarIcon from './assets/dolarIcon.svg'
 import { CreditCard, MapPinLine, Money } from 'phosphor-react'
 import { CoffeeItem } from './components/CoffeeItem'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 
 const newOrderFormValidationSchema = zod.object({
   zipCode: zod.string().min(1, 'Inform a zip code'),
   street: zod.string().min(1, 'Inform a street'),
   number: zod.string().min(1, 'Inform a number'),
-  complement: zod.string().min(1, 'Inform a complement'),
+  complement: zod.string().min(0, 'Inform a complement'),
   neighborhood: zod.string().min(1, 'Inform a neighborhood'),
   city: zod.string().min(1, 'Inform a city'),
   st: zod.string().min(1, 'Inform a state'),
-  payment: zod.string(),
+  paymentMethod: zod.string(),
   total: zod.number(),
 })
 
 type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
+  const [selectPaymentMethod, setSelectPaymentMethod] = useState<string>('')
   const { cartItems, createNewOrder } = useContext(CartContext)
 
   const total: number = cartItems.reduce(
@@ -45,10 +46,6 @@ export function Checkout() {
   )
 
   const navigate = useNavigate()
-
-  function handleConfirmOrder() {
-    navigate('/confirmation')
-  }
 
   const newOrderForm = useForm<NewOrderFormData>({
     resolver: zodResolver(newOrderFormValidationSchema),
@@ -60,20 +57,37 @@ export function Checkout() {
       neighborhood: '',
       city: '',
       st: '',
-      payment: 'credit card',
+      paymentMethod: '',
       total: total + 3,
     },
   })
 
-  const { handleSubmit, reset } = newOrderForm
+  const { register, handleSubmit, watch, reset } = newOrderForm
 
-  function handleOrderNewCycle(data: NewOrderFormData) {
+  const requiredData = watch([
+    'zipCode',
+    'street',
+    'number',
+    'neighborhood',
+    'city',
+    'st',
+    'paymentMethod',
+  ])
+
+  const isSubmitDisabled = requiredData.includes('')
+
+  function handleSelectPaymentMethod(event: string) {
+    setSelectPaymentMethod(event)
+  }
+
+  function handleConfirmOrder(data: NewOrderFormData) {
     createNewOrder(data)
     reset() /** to reset the form */
+    navigate('/confirmation')
   }
 
   return (
-    <CheckoutForm onSubmit={handleSubmit(handleOrderNewCycle)} action="">
+    <CheckoutForm onSubmit={handleSubmit(handleConfirmOrder)} action="">
       <CompleteYourOrderContainer>
         <h3>Complete your order</h3>
         <DeliveryContainer>
@@ -88,22 +102,57 @@ export function Checkout() {
           </div>
 
           <div className="input-wrapper">
-            <input type="text" placeholder="Zip code" />
-            <input type="text" placeholder="Street" className="street-input" />
+            <input
+              id="zipCode"
+              type="text"
+              placeholder="Zip code"
+              {...register('zipCode')}
+            />
+            <input
+              id="street"
+              type="text"
+              placeholder="Street"
+              className="street-input"
+              {...register('street')}
+            />
 
             <div className="number-complement-input-wrapper">
-              <input type="text" placeholder="Number" />
               <input
+                id="number"
+                type="text"
+                placeholder="Number"
+                {...register('number')}
+              />
+              <input
+                id="complement"
                 type="text"
                 placeholder="Complement"
                 className="complement-input"
+                {...register('complement')}
               />
             </div>
 
             <div className="neighborhood-city-state-input-wrapper">
-              <input type="text" placeholder="Neighborhood" />
-              <input type="text" placeholder="City" className="city-input" />
-              <input type="text" placeholder="ST" className="state-input" />
+              <input
+                id="neighborhood"
+                type="text"
+                placeholder="Neighborhood"
+                {...register('neighborhood')}
+              />
+              <input
+                id="city"
+                type="text"
+                placeholder="City"
+                className="city-input"
+                {...register('city')}
+              />
+              <input
+                id="st"
+                type="text"
+                placeholder="ST"
+                className="state-input"
+                {...register('st')}
+              />
             </div>
           </div>
         </DeliveryContainer>
@@ -118,14 +167,35 @@ export function Checkout() {
             </div>
           </div>
           <div className="payment-method-wrapper">
-            <button className="selected-button">
+            <label
+              className={
+                selectPaymentMethod === 'Credit Card' ? 'selected-input' : ''
+              }
+              onClick={() => handleSelectPaymentMethod('Credit Card')}
+            >
+              <input
+                id="paymentMethod"
+                type="radio"
+                value="Credit Card"
+                {...register('paymentMethod')}
+              />
               <CreditCard size={16} />
               <span>Credit Card</span>
-            </button>
-            <button>
+            </label>
+
+            <label
+              className={selectPaymentMethod === 'Cash' ? 'selected-input' : ''}
+              onClick={() => handleSelectPaymentMethod('Cash')}
+            >
+              <input
+                id="paymentMethod"
+                type="radio"
+                value="Cash"
+                {...register('paymentMethod')}
+              />
               <Money size={16} />
               <span>Cash</span>
-            </button>
+            </label>
           </div>
         </DeliveryContainer>
       </CompleteYourOrderContainer>
@@ -152,7 +222,7 @@ export function Checkout() {
             </Total>
           </div>
 
-          <ConfirmButton onClick={handleConfirmOrder}>
+          <ConfirmButton disabled={isSubmitDisabled} type="submit">
             <span>Confirm order</span>
           </ConfirmButton>
         </div>
