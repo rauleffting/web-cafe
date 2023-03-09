@@ -21,7 +21,7 @@ export function Header() {
       <LocationAndCart>
         <div className="location">
           <MapPin size={22} />
-          <span>São Paulo, SP</span>
+          <span>Los Angeles, CA</span>
         </div>
         <NavLink to="/checkout" title="checkout">
           <button className="cart">
