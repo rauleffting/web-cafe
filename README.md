@@ -26,11 +26,9 @@ Web Cafe provides the following features:
 Installation
 ------------
 
-To use the website, simply navigate to the [Web Cafe website](https://rauleffting.github.io/web-cafe/) using your web browser.
+To use the website, simply navigate to the [Web Cafe website](https://web-cafe94.netlify.app/) using your web browser.
 
 If you would like to host the website on your local machine, you can clone the repository to your local machine.
-
-bashCopy code
 
 `git clone https://github.com/rauleffting/web-cafe.git`
 
