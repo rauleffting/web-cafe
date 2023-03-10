@@ -7,17 +7,26 @@ import {
 } from 'react'
 
 import americanEspresso from '../assets/american-espresso.svg'
-import arabicEspresso from '../assets/arabic.svg'
-import traditionalEspresso from '../assets/traditional-espresso.svg'
+import arabic from '../assets/arabic.svg'
 import capuccino from '../assets/capuccino.svg'
 import coffeWithMilk from '../assets/coffee-with-milk.svg'
+import creamyEspresso from '../assets/creamy-espresso.svg'
+import cuban from '../assets/cuban.svg'
+import hawaiian from '../assets/hawaiian.svg'
+import hotChocolate from '../assets/hot-chocolate.svg'
+import icedEspresso from '../assets/iced-espresso.svg'
+import irish from '../assets/irish.svg'
+import latte from '../assets/latte.svg'
+import macchiato from '../assets/macchiato.svg'
+import mochaccino from '../assets/mochaccino.svg'
+import traditionalEspresso from '../assets/traditional-espresso.svg'
 
-import { cartReducer } from '../reducers/cart/reducer'
-import {
-  addToCartAction,
-  removeItem,
-  updateQuantity,
-} from '../reducers/cart/actions'
+// import { cartReducer } from '../reducers/cart/reducer'
+// import {
+//   addToCartAction,
+//   removeItem,
+//   updateQuantity,
+// } from '../reducers/cart/actions'
 
 export interface Items {
   image: string
@@ -84,8 +93,8 @@ export function CartContextProvider({ children }: CartContextProps) {
       description: 'Diluted espresso, less intense than the traditional one',
     },
     {
-      image: arabicEspresso,
-      name: 'Arabic Espresso',
+      image: arabic,
+      name: 'Arabic',
       price: '9.90',
       types: ['special'],
       description: 'Drink prepared with Arabic coffee beans and spices',
@@ -104,6 +113,71 @@ export function CartContextProvider({ children }: CartContextProps) {
       price: '9.90',
       types: ['traditional', 'with milk'],
       description: 'Half and half traditional espresso with steamed milk',
+    },
+    {
+      image: creamyEspresso,
+      name: 'Coffee With Milk',
+      price: '9.90',
+      types: ['traditional'],
+      description: 'Traditional espresso with creamy foam',
+    },
+    {
+      image: cuban,
+      name: 'Cuban',
+      price: '9.90',
+      types: ['special', 'alcoholic', 'cold'],
+      description: 'Iced espresso drink with rum, cream and mint',
+    },
+    {
+      image: hawaiian,
+      name: 'Hawaiian',
+      price: '9.90',
+      types: ['special'],
+      description: 'Sweet drink prepared with coffee and coconut milk',
+    },
+    {
+      image: hotChocolate,
+      name: 'Hot Chocolate',
+      price: '9.90',
+      types: ['special', 'with milk'],
+      description: 'Drink made with chocolate dissolved in hot milk and coffee',
+    },
+    {
+      image: icedEspresso,
+      name: 'Iced Espresso',
+      price: '9.90',
+      types: ['traditional', 'cold'],
+      description: 'Drink prepared with espresso coffee and ice cubes',
+    },
+    {
+      image: irish,
+      name: 'Irish',
+      price: '9.90',
+      types: ['special', 'alcoholic'],
+      description:
+        'Drink based on coffee, Irish whiskey, sugar and whipped cream',
+    },
+    {
+      image: latte,
+      name: 'Latte',
+      price: '9.90',
+      types: ['traditional', 'with milk'],
+      description: 'A shot of espresso with twice as much milk and creamy foam',
+    },
+    {
+      image: macchiato,
+      name: 'Macchiato',
+      price: '9.90',
+      types: ['traditional', 'with milk'],
+      description: 'Espresso coffee mixed with a little hot milk and foam',
+    },
+    {
+      image: mochaccino,
+      name: 'Mochaccino',
+      price: '9.90',
+      types: ['traditional', 'with milk'],
+      description:
+        'Espresso coffee with chocolate sauce, a little milk and foam',
     },
     {
       image: traditionalEspresso,
