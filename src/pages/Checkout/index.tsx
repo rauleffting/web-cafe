@@ -38,7 +38,7 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
   const [selectPaymentMethod, setSelectPaymentMethod] = useState<string>('')
-  const { cartItems, createNewOrder } = useContext(CartContext)
+  const { cartItems, createNewOrder, handleClearCart } = useContext(CartContext)
 
   const total: number = cartItems.reduce(
     (total, item) => (total += item.quantity * Number(item.price)),
@@ -83,6 +83,7 @@ export function Checkout() {
   function handleConfirmOrder(data: NewOrderFormData) {
     createNewOrder(data)
     reset() /** to reset the form */
+    handleClearCart()
     navigate('/confirmation')
   }
 

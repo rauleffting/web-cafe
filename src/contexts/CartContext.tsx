@@ -65,6 +65,7 @@ interface CartContextType {
   handleSub: (name: string) => void
   handleRemove: (name: string) => void
   createNewOrder: (data: createOrderData) => void
+  handleClearCart: () => void
 }
 
 interface CartContextProps {
@@ -113,13 +114,15 @@ export function CartContextProvider({ children }: CartContextProps) {
     },
   ]
 
-  const [cartItems, dispatch] = useReducer(cartReducer, [], () => {
-    const storedStateAsJSON = localStorage.getItem('@webcafe-1.0.0')
+  // const [cartItems, dispatch] = useReducer(cartReducer, [], () => {
+  //   const storedStateAsJSON = localStorage.getItem('@webcafe-1.0.0')
 
-    if (storedStateAsJSON) {
-      return JSON.parse(storedStateAsJSON)
-    }
-  })
+  //   if (storedStateAsJSON) {
+  //     return JSON.parse(storedStateAsJSON)
+  //   }
+  // })
+
+  const [cartItems, setCartItems] = useState<CartItems[]>([])
 
   const numberOfItems = cartItems.reduce(
     (total, item) => (total += item.quantity),
@@ -128,24 +131,76 @@ export function CartContextProvider({ children }: CartContextProps) {
 
   const [order, setOrder] = useState<createOrderData>(initialOrderState)
 
+  // function handleAddToCart(newCartItem: CartItems) {
+  //   dispatch(addToCartAction(newCartItem))
+  // }
+
   function handleAddToCart(newCartItem: CartItems) {
-    dispatch(addToCartAction(newCartItem))
+    const existingItem = cartItems.find(
+      (item) => item.name === newCartItem.name,
+    )
+    if (existingItem) {
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.name === newCartItem.name
+            ? { ...item, quantity: item.quantity + newCartItem.quantity }
+            : item,
+        ),
+      )
+    } else {
+      setCartItems((prevItems) => [...prevItems, newCartItem])
+    }
   }
+
+  // function handleSum(name: string) {
+  //   dispatch(updateQuantity(name, 1))
+  // }
 
   function handleSum(name: string) {
-    dispatch(updateQuantity(name, 1))
+    const existingItem = cartItems.find((item) => item.name === name)
+    if (existingItem) {
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.name === name ? { ...item, quantity: item.quantity + 1 } : item,
+        ),
+      )
+    }
   }
+
+  // function handleSub(name: string) {
+  //   dispatch(updateQuantity(name, -1))
+  // }
 
   function handleSub(name: string) {
-    dispatch(updateQuantity(name, -1))
+    const existingItem = cartItems.find((item) => item.name === name)
+    if (existingItem) {
+      setCartItems((prevItems) =>
+        prevItems.map((item) =>
+          item.name === name ? { ...item, quantity: item.quantity - 1 } : item,
+        ),
+      )
+    }
   }
 
+  // function handleRemove(name: string) {
+  //   dispatch(removeItem(name))
+  // }
+
   function handleRemove(name: string) {
-    dispatch(removeItem(name))
+    const existingItem = cartItems.find((item) => item.name === name)
+    if (existingItem) {
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => item.name !== name),
+      )
+    }
   }
 
   function createNewOrder(data: createOrderData) {
     setOrder({ ...data })
+  }
+
+  function handleClearCart() {
+    setCartItems([])
   }
 
   useEffect(() => {
@@ -164,6 +219,7 @@ export function CartContextProvider({ children }: CartContextProps) {
         handleSub,
         handleRemove,
         createNewOrder,
+        handleClearCart,
       }}
     >
       {children}
