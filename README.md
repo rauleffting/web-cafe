@@ -34,7 +34,7 @@ If you would like to host the website on your local machine, you can clone the r
 
 2.  Install the dependencies: ```npm install```
 
-3.  Start the development server: ```npm run dev```
+3.  Start the development server: ```npm run serv```
 
 Usage
 -----
