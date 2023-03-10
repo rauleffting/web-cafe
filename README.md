@@ -30,11 +30,11 @@ To use the website, simply navigate to the [Web Cafe website](https://web-cafe94
 
 If you would like to host the website on your local machine, you can clone the repository to your local machine.
 
-```git clone https://github.com/rauleffting/web-cafe.git```
+1.  Clone the repository to your local machine: ```git clone https://github.com/rauleffting/web-cafe.git```
 
-```npm install```
+2.  Install the dependencies: ```npm install```
 
-```npm run dev```
+3.  Start the development server: ```npm run dev```
 
 Usage
 -----
