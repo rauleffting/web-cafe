@@ -69,6 +69,7 @@ interface CartContextType {
   cartItems: CartItems[]
   numberOfItems: number
   order: createOrderData
+  isThereItemsInTheChart: boolean
   handleAddToCart: (newCartItem: CartItems) => void
   handleSum: (name: string) => void
   handleSub: (name: string) => void
@@ -116,7 +117,7 @@ export function CartContextProvider({ children }: CartContextProps) {
     },
     {
       image: creamyEspresso,
-      name: 'Coffee With Milk',
+      name: 'Creamy Espresso',
       price: '9.90',
       types: ['traditional'],
       description: 'Traditional espresso with creamy foam',
@@ -196,7 +197,15 @@ export function CartContextProvider({ children }: CartContextProps) {
   //   }
   // })
 
-  const [cartItems, setCartItems] = useState<CartItems[]>([])
+  const [cartItems, setCartItems] = useState<CartItems[]>(() => {
+    const storedStateAsJSON = localStorage.getItem('@webcafe-1.0.0')
+
+    if (storedStateAsJSON) {
+      return JSON.parse(storedStateAsJSON)
+    } else {
+      return []
+    }
+  })
 
   const numberOfItems = cartItems.reduce(
     (total, item) => (total += item.quantity),
@@ -204,6 +213,8 @@ export function CartContextProvider({ children }: CartContextProps) {
   )
 
   const [order, setOrder] = useState<createOrderData>(initialOrderState)
+
+  const isThereItemsInTheChart = numberOfItems > 0
 
   // function handleAddToCart(newCartItem: CartItems) {
   //   dispatch(addToCartAction(newCartItem))
@@ -288,6 +299,7 @@ export function CartContextProvider({ children }: CartContextProps) {
         cartItems,
         numberOfItems,
         order,
+        isThereItemsInTheChart,
         handleAddToCart,
         handleSum,
         handleSub,

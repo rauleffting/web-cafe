@@ -19,7 +19,7 @@ import zod from 'zod'
 import dolarIcon from './assets/dolarIcon.svg'
 import { CreditCard, MapPinLine, Money } from 'phosphor-react'
 import { CoffeeItem } from './components/CoffeeItem'
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 
 const newOrderFormValidationSchema = zod.object({
@@ -38,7 +38,8 @@ type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
   const [selectPaymentMethod, setSelectPaymentMethod] = useState<string>('')
-  const { cartItems, createNewOrder, handleClearCart } = useContext(CartContext)
+  const { cartItems, isThereItemsInTheChart, createNewOrder, handleClearCart } =
+    useContext(CartContext)
 
   const total: number = cartItems.reduce(
     (total, item) => (total += item.quantity * Number(item.price)),
@@ -223,7 +224,10 @@ export function Checkout() {
             </Total>
           </div>
 
-          <ConfirmButton disabled={isSubmitDisabled} type="submit">
+          <ConfirmButton
+            disabled={isSubmitDisabled || !isThereItemsInTheChart}
+            type="submit"
+          >
             <span>Confirm order</span>
           </ConfirmButton>
         </div>

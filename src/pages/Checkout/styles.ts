@@ -133,6 +133,11 @@ export const DeliveryContainer = styled.div`
         width: 0;
       }
 
+      &:hover {
+        cursor: pointer;
+        background-color: ${(props) => props.theme['gray-500']};
+      }
+
       svg {
         color: ${(props) => props.theme['purple-500']};
       }
@@ -148,11 +153,6 @@ export const DeliveryContainer = styled.div`
       }
     }
 
-    > button:hover {
-      cursor: pointer;
-      background-color: ${(props) => props.theme['gray-500']};
-    }
-
     .selected-input {
       background-color: ${(props) => props.theme['purple-300']};
       border: 1px solid ${(props) => props.theme['purple-500']};
@@ -161,7 +161,7 @@ export const DeliveryContainer = styled.div`
 `
 
 export const SelectedCoffeesContainer = styled.div`
-  max-width: 28rem;
+  min-width: 28rem;
 
   .order-container {
     display: flex;

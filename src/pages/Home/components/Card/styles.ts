@@ -56,6 +56,12 @@ export const CardContainer = styled.div`
     padding: 0 1.25rem;
     margin-bottom: 2rem;
   }
+
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+  }
 `
 
 export const CardFooter = styled.div`

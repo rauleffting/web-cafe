@@ -6,7 +6,7 @@ import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 
 export function Header() {
-  const { numberOfItems } = useContext(CartContext)
+  const { numberOfItems, isThereItemsInTheChart } = useContext(CartContext)
 
   return (
     <HeaderContainer>
@@ -23,10 +23,13 @@ export function Header() {
           <MapPin size={22} />
           <span>Los Angeles, CA</span>
         </div>
-        <NavLink to="/checkout" title="checkout">
+        <NavLink
+          to={isThereItemsInTheChart ? '/checkout' : '/'}
+          title="checkout"
+        >
           <button className="cart">
             <ShoppingCart size={22} />
-            {numberOfItems > 0 && <span>{numberOfItems}</span>}
+            {isThereItemsInTheChart && <span>{numberOfItems}</span>}
           </button>
         </NavLink>
       </LocationAndCart>
