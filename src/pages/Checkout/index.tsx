@@ -8,8 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 /** to validate forms */
 import zod from 'zod'
 
-import { CoffeeItem } from './components/Cart/components/CoffeeItem'
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { DeliveryForm } from './components/DeliveryForm'
 import { Cart } from './components/Cart'
