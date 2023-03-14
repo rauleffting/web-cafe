@@ -40,7 +40,6 @@ Usage
 -----
 
 When you open the website, you will be taken to the home page where you can view the menu items and prices. To add items to your cart, simply click on the "Add to cart" button next to the item. You can modify your cart items by clicking on the cart icon in the navigation bar.
-
 To place an order, click on the cart button on the Header. You will be taken to a form where you can enter your name, email, and address. Once you submit the form, your order will be processed.
 
 
