@@ -11,6 +11,7 @@ export const HeaderContainer = styled.header`
     gap: 0.25rem;
     cursor: pointer;
     text-decoration: none;
+    z-index: 1;
 
     img {
       height: 2.5rem;
@@ -41,6 +42,7 @@ export const HeaderContainer = styled.header`
 export const LocationAndCart = styled.div`
   display: flex;
   gap: 1.25rem;
+  z-index: 1;
 
   .location {
     display: flex;

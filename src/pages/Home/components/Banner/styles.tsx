@@ -89,8 +89,6 @@ export const Background = styled.div`
   bottom: 0;
   max-height: 34rem;
   background-image: url(${background});
-  background-size: cover;
-  background-position: center;
   filter: blur(80px);
   z-index: 0;
 `
