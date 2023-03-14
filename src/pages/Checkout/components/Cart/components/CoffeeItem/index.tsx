@@ -2,7 +2,7 @@ import { CoffeeItemContainer, QuantityControlsContainer } from './styles'
 
 import { Minus, Plus, Trash } from 'phosphor-react'
 
-import { CartItems, CartContext } from '../../../../contexts/CartContext'
+import { CartItems, CartContext } from '../../../../../../contexts/CartContext'
 import { useContext } from 'react'
 
 interface CoffeeItemProps {
@@ -21,6 +21,7 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
         <div className="buttons-wrapper">
           <QuantityControlsContainer>
             <button
+              type="button"
               onClick={
                 item.quantity > 1 ? () => handleSub(item.name) : undefined
               }
@@ -28,7 +29,7 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
               <Minus size={14} />
             </button>
             <span>{item.quantity}</span>
-            <button onClick={() => handleSum(item.name)}>
+            <button type="button" onClick={() => handleSum(item.name)}>
               <Plus size={14} />
             </button>
           </QuantityControlsContainer>
@@ -43,7 +44,7 @@ export function CoffeeItem({ item }: CoffeeItemProps) {
         </div>
       </div>
 
-      <span>$ {(Number(item.price) * item.quantity).toFixed(2)}</span>
+      <span>$ {(item.price * item.quantity).toFixed(2)}</span>
     </CoffeeItemContainer>
   )
 }

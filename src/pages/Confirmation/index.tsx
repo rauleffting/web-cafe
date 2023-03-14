@@ -13,6 +13,7 @@ import { CartContext } from '../../contexts/CartContext'
 
 export function Confirmation() {
   const { order } = useContext(CartContext)
+  console.log(order)
 
   return (
     <ConfirmationContainer>

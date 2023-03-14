@@ -31,7 +31,7 @@ import traditionalEspresso from '../assets/traditional-espresso.svg'
 export interface Items {
   image: string
   name: string
-  price: string
+  price: number
   types: string[]
   description: string
 }
@@ -49,7 +49,6 @@ interface createOrderData {
   city: string
   st: string
   paymentMethod: string
-  total: number
 }
 
 const initialOrderState: createOrderData = {
@@ -61,7 +60,6 @@ const initialOrderState: createOrderData = {
   city: '',
   st: '',
   paymentMethod: '',
-  total: 0,
 }
 
 interface CartContextType {
@@ -89,21 +87,21 @@ export function CartContextProvider({ children }: CartContextProps) {
     {
       image: americanEspresso,
       name: 'American Espresso',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional'],
       description: 'Diluted espresso, less intense than the traditional one',
     },
     {
       image: arabic,
       name: 'Arabic',
-      price: '9.90',
+      price: 9.9,
       types: ['special'],
       description: 'Drink prepared with Arabic coffee beans and spices',
     },
     {
       image: capuccino,
       name: 'Capuccino',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional', 'with milk'],
       description:
         'Cinnamon drink made from equal doses of coffee, milk and foam',
@@ -111,49 +109,49 @@ export function CartContextProvider({ children }: CartContextProps) {
     {
       image: coffeWithMilk,
       name: 'Coffee With Milk',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional', 'with milk'],
       description: 'Half and half traditional espresso with steamed milk',
     },
     {
       image: creamyEspresso,
       name: 'Creamy Espresso',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional'],
       description: 'Traditional espresso with creamy foam',
     },
     {
       image: cuban,
       name: 'Cuban',
-      price: '9.90',
+      price: 9.9,
       types: ['special', 'alcoholic', 'cold'],
       description: 'Iced espresso drink with rum, cream and mint',
     },
     {
       image: hawaiian,
       name: 'Hawaiian',
-      price: '9.90',
+      price: 9.9,
       types: ['special'],
       description: 'Sweet drink prepared with coffee and coconut milk',
     },
     {
       image: hotChocolate,
       name: 'Hot Chocolate',
-      price: '9.90',
+      price: 9.9,
       types: ['special', 'with milk'],
       description: 'Drink made with chocolate dissolved in hot milk and coffee',
     },
     {
       image: icedEspresso,
       name: 'Iced Espresso',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional', 'cold'],
       description: 'Drink prepared with espresso coffee and ice cubes',
     },
     {
       image: irish,
       name: 'Irish',
-      price: '9.90',
+      price: 9.9,
       types: ['special', 'alcoholic'],
       description:
         'Drink based on coffee, Irish whiskey, sugar and whipped cream',
@@ -161,21 +159,21 @@ export function CartContextProvider({ children }: CartContextProps) {
     {
       image: latte,
       name: 'Latte',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional', 'with milk'],
       description: 'A shot of espresso with twice as much milk and creamy foam',
     },
     {
       image: macchiato,
       name: 'Macchiato',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional', 'with milk'],
       description: 'Espresso coffee mixed with a little hot milk and foam',
     },
     {
       image: mochaccino,
       name: 'Mochaccino',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional', 'with milk'],
       description:
         'Espresso coffee with chocolate sauce, a little milk and foam',
@@ -183,7 +181,7 @@ export function CartContextProvider({ children }: CartContextProps) {
     {
       image: traditionalEspresso,
       name: 'Traditional Espresso',
-      price: '9.90',
+      price: 9.9,
       types: ['traditional'],
       description: 'Traditional coffee made with hot water and ground beans',
     },
