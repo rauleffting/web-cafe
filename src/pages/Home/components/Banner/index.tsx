@@ -1,4 +1,4 @@
-import { BannerContainer } from './styles'
+import { BannerContainer, Background } from './styles'
 import coffees from './assets/coffees.svg'
 import cart from './assets/cart.svg'
 import clock from './assets/clock.svg'
@@ -8,6 +8,7 @@ import cup from './assets/cup.svg'
 export function Banner() {
   return (
     <BannerContainer>
+      <Background />
       <div className="left-content-wrapper">
         <h1>Find the perfect coffee for any time of day</h1>
         <p>With Web Cafe, you get your coffee wherever you are, anytime</p>

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import background from './assets/background.svg'
 
 export const BannerContainer = styled.section`
   display: flex;
@@ -78,4 +79,18 @@ export const BannerContainer = styled.section`
       transform: translateX(0);
     }
   }
+`
+
+export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 34rem;
+  background-image: url(${background});
+  background-size: cover;
+  background-position: center;
+  filter: blur(80px);
+  z-index: 0;
 `
