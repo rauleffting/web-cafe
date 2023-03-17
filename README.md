@@ -53,6 +53,7 @@ The website was built using the following technologies:
 *   TypeScript
 *   Zod
 *   Vite
+*   React Hook Form
 
 Contributing
 ------------
