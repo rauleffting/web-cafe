@@ -63,7 +63,7 @@ Contributions are welcome! If you would like to contribute to this project, plea
 License
 -------
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. 
 
 ![Web Cafe](https://user-images.githubusercontent.com/29555732/224161760-9d71531c-4fc2-45b2-a80c-4a325d60d027.png)
 
