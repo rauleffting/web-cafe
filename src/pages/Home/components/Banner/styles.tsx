@@ -78,4 +78,31 @@ export const BannerContainer = styled.section`
       transform: translateX(0);
     }
   }
+
+  @media (max-width: 1186px) {
+    padding-bottom: 0;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    span {
+      font-size: 0.875rem;
+    }
+
+    .left-content-wrapper {
+      > div {
+        gap: 1.25rem;
+      }
+    }
+
+    .right-content-wrapper {
+      display: none;
+    }
+  }
 `

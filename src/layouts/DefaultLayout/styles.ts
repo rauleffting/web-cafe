@@ -7,4 +7,10 @@ export const LayoutContainer = styled.div`
 
   background: ${(props) => props.theme['gray-100']};
   overflow: auto;
+
+  @media (max-width: 1186px) {
+    padding: 2rem;
+
+    overflow: auto;
+  }
 `

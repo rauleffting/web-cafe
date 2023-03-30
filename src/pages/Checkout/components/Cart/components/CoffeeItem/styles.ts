@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const CoffeeItemContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid;
   border-bottom-color: ${(props) => props.theme['gray-400']};
@@ -67,6 +68,47 @@ export const CoffeeItemContainer = styled.div`
     font-size: 16px;
     line-height: 130%;
     color: ${(props) => props.theme['gray-700']};
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1186px) {
+    .image {
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1.25rem;
+    }
+
+    .name-quantity-remove-wrapper {
+      margin: 0;
+
+      > span {
+        font-size: 0.875rem;
+      }
+    }
+
+    .buttons-wrapper {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .button-remove {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.25rem;
+      height: 2.375rem;
+      padding: 0 0.5rem;
+      border-radius: 6px;
+      background-color: ${(props) => props.theme['gray-400']};
+
+      > svg {
+        color: ${(props) => props.theme['purple-500']};
+      }
+
+      > span {
+        display: none;
+      }
+    }
   }
 `
 

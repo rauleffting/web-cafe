@@ -61,4 +61,8 @@ export const Info = styled.div`
 
 export const TextContainer = styled.div``
 
-export const ImageContainer = styled.div``
+export const ImageContainer = styled.div`
+  @media (max-width: 1186px) {
+    display: none;
+  }
+`

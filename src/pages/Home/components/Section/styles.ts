@@ -33,6 +33,10 @@ export const SectionContainer = styled.section`
       font-size: 21;
     }
   }
+
+  @media (max-width: 768px) {
+    padding-top: 1rem;
+  }
 `
 
 export const List = styled.div`
@@ -40,4 +44,10 @@ export const List = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   row-gap: 2.5rem;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `

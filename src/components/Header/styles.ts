@@ -36,6 +36,23 @@ export const HeaderContainer = styled.header`
       font-size: 1.375rem;
       line-height: 50%;
     }
+
+    @media (max-width: 1186px) {
+      height: 2rem;
+
+      img {
+        height: 2rem;
+        width: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+    }
   }
 `
 
@@ -66,6 +83,10 @@ export const LocationAndCart = styled.div`
       font-size: 0.875rem;
       line-height: 130%;
       color: ${(props) => props.theme['purple-700']};
+    }
+
+    @media (max-width: 1186px) {
+      height: 2rem;
     }
   }
 
@@ -101,6 +122,18 @@ export const LocationAndCart = styled.div`
       font-size: 12px;
       line-height: 130%;
       color: ${(props) => props.theme.white};
+    }
+
+    @media (max-width: 1186px) {
+      height: 2rem;
+
+      p {
+        font-size: 1rem;
+      }
+
+      span {
+        font-size: 0.8rem;
+      }
     }
   }
 

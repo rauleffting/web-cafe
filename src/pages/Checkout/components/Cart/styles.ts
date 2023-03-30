@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const CartContainer = styled.div`
-  min-width: 28rem;
+  max-width: 40rem;
 
   .content {
     display: flex;
@@ -17,6 +17,9 @@ export const CartContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+  @media (max-width: 1186px) {
+    width: 100%;
   }
 `
 

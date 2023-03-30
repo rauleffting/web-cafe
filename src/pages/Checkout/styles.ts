@@ -18,4 +18,8 @@ export const CheckoutForm = styled.form`
   a {
     text-decoration: none;
   }
+
+  @media (max-width: 1186px) {
+    flex-direction: column;
+  }
 `

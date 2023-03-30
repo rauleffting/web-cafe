@@ -87,7 +87,7 @@ export const InputsContainer = styled.div`
       }
 
       .state-input {
-        max-width: 3.75rem;
+        width: 3.75rem;
       }
     }
   }
@@ -136,6 +136,45 @@ export const InputsContainer = styled.div`
     .selected-input {
       background-color: ${(props) => props.theme['purple-300']};
       border: 1px solid ${(props) => props.theme['purple-500']};
+    }
+  }
+
+  @media (max-width: 1186px) {
+    width: 100%;
+
+    .input-wrapper {
+      input {
+        width: 100%;
+      }
+
+      .number-complement-input-wrapper {
+        flex-direction: column;
+        gap: 0;
+
+        .complement-input {
+          width: 100%;
+        }
+      }
+
+      .neighborhood-city-state-input-wrapper {
+        flex-direction: column;
+        gap: 0;
+
+        input {
+          width: 100%;
+        }
+
+        .state-input {
+          width: 100%;
+        }
+      }
+    }
+
+    .payment-method-wrapper {
+      display: block;
+      label:first-child {
+        margin-bottom: 1rem;
+      }
     }
   }
 `
